@@ -1,10 +1,8 @@
 package com.goodboy.manoma.coolapp.framework;
 
 import android.app.Activity;
+import android.util.Log;
 import android.util.Pair;
-
-import com.goodboy.manoma.coolapp.login.LoginController;
-import com.goodboy.manoma.coolapp.login.LoginView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -13,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 class InitializerImpl implements Initializer {
     @Override
-    public <V extends ScreenView, C extends Controller<V>> void initialize(
+    public <V extends ScreenView, C extends Controller<V>> ActivityEventListener initialize(
             Activity activity, Pair<Class<V>, Class<C>> ...vcPairs) {
         Map screenViews = new HashMap();
         ScreenViewManager manager = ScreenViewManager.newInstance(activity, screenViews);
@@ -22,6 +20,7 @@ class InitializerImpl implements Initializer {
         }
         // 一番上のViewを最初に表示する
         manager.transit(vcPairs[0].first, false);
+        return manager;
     }
 
     private <V extends ScreenView, C extends Controller> void contract(
@@ -33,7 +32,7 @@ class InitializerImpl implements Initializer {
 
         Class<?>[] controllerParamTypes = {Activity.class, vClass, ScreenViewManager.class};
         Object[] controllerValues = {activity, view, manager};
-        Controller<V> controller = newInstance(cClass, controllerParamTypes, controllerValues);
+        Controller controller = newInstance(cClass, controllerParamTypes, controllerValues);
 
         ViewEventDispatcher.getInstance().put(cClass, controller);
 
@@ -49,6 +48,7 @@ class InitializerImpl implements Initializer {
             return rClass.getConstructor(types).newInstance(args);
         } catch (InstantiationException | IllegalAccessException |
                 InvocationTargetException | NoSuchMethodException e) {
+            Log.e("TAG", "error occurred.",e);
             throw new ExceptionInInitializerError(e);
         }
     }

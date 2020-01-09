@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="evertonCircleColor">#0000CD</color>
+    <color name="evertonTextColor">#FFFFFF</color>
+    <color name="one">#7CFC00</color>
+    <color name="two">#ADFF2F</color>
+    <color name="three">#FFFF00</color>
+    <color name="four">#FFD700</color>
+    <color name="five">#FFA500</color>
+    <color name="six">#FF8C00</color>
+    <color name="seven">#D2691E</color>
+    <color name="eight">#800000</color>
+    <color name="nine">#B22222</color>
+    <color name="ten">#FF0000</color>
+
+
 </resources>

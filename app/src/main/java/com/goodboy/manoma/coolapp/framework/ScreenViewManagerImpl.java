@@ -2,6 +2,7 @@ package com.goodboy.manoma.coolapp.framework;
 
 import android.app.Activity;
 import android.util.Pair;
+import android.view.MotionEvent;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -32,9 +33,24 @@ class ScreenViewManagerImpl implements ScreenViewManager {
 
         mContext.setContentView(view.getLayoutId());
         mCurrentView = view;
-        if (isFirst.getAndSet(false)) {
-            mCurrentView.onCreate(mContext);
-        }
-        mCurrentView.onAppear();
+//        if (isFirst.getAndSet(false)) {
+//            mCurrentView.onCreate(mContext);
+//        }
+        mCurrentView.onAppear(mContext);
+    }
+
+    @Override
+    public void onBackKeyPressed() {
+        mCurrentView.onBackKeyPressed();
+    }
+
+    @Override
+    public void onTouch(MotionEvent event) {
+        mCurrentView.onTouch(event);
+    }
+
+    @Override
+    public void onClickMenuItem(int id) {
+        mCurrentView.onClick(id);
     }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 画面遷移をするときはこのクラスを使うんだ！
  */
-public interface ScreenViewManager {
+public interface ScreenViewManager extends ActivityEventListener {
 
     static ScreenViewManager newInstance(Activity context, Map screenViews) {
         return new ScreenViewManagerImpl(context, screenViews);

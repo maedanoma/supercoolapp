@@ -10,6 +10,9 @@ import java.util.Map;
  */
 
 public class ViewEventDispatcher implements ViewEventListener {
+    public interface FunctionInterface {
+        void function(ViewEventParam param);
+    }
     private static final ViewEventDispatcher INSTANCE = new ViewEventDispatcher();
     private final Map<Class, ViewEventListener> mListeners;
 
@@ -41,7 +44,13 @@ public class ViewEventDispatcher implements ViewEventListener {
     }
 
     @Override
+    public void onTouch(ViewEventParam param) {
+        mListeners.get(param.getControllerClass()).onTouch(param);
+    }
+
+    @Override
     public void onClick(int id, ViewEventParam param) {
+        Log.w("TAG", "onClick. class = " +  param.getControllerClass());
         mListeners.get(param.getControllerClass()).onClick(id, param);
     }
 }

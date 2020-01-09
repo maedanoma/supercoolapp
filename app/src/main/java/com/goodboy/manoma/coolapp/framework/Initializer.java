@@ -12,6 +12,6 @@ public interface Initializer {
         return new InitializerImpl();
     }
 
-    <V extends ScreenView, C extends Controller<V>> void initialize(
+    <V extends ScreenView, C extends Controller<V>> ActivityEventListener initialize(
             Activity activity, Pair<Class<V>, Class<C>> ...vcPairs);
 }

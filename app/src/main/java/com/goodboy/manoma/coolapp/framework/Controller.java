@@ -2,7 +2,7 @@ package com.goodboy.manoma.coolapp.framework;
 
 import android.app.Activity;
 
-import com.goodboy.manoma.coolapp.utils.DialogFactoryImpl;
+//import com.goodboy.manoma.coolapp.utils.DialogFactoryImpl;
 
 /**
  * {@link ViewEventListener} を使って {@link ScreenView} からのイベントと
@@ -12,9 +12,13 @@ import com.goodboy.manoma.coolapp.utils.DialogFactoryImpl;
 public abstract class Controller <V extends ScreenView> implements ViewEventListener {
     protected final V mView;
     protected final ScreenViewManager mScreenManager;
-    protected final DialogFactoryImpl mDialogFactory;
+//    protected final DialogFactoryImpl mDialogFactory;
+
+    /**
+     * 子クラスのコンストラクタはpublicにするのだ！
+     */
     protected Controller(Activity activity, V view, ScreenViewManager manager) {
-        mDialogFactory = new DialogFactoryImpl(activity);
+//        mDialogFactory = new DialogFactoryImpl(activity);
         mView = view;
         mScreenManager = manager;
     }
